@@ -17,9 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from photo import views as photo_views # Used to link the url to the website stored under photo/tempelates
-# show photo/tempelates/index after the user typed the URL
+from photo import views as photo_views
 urlpatterns = [
     url(r'^$', photo_views.photo,name='photo'),
     url(r'^admin/', admin.site.urls),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # Allow static files (photos) on the webpage
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

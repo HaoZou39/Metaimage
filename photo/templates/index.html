@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-{% load staticfiles %}<!-- Loading Static files, for example: photos-->
+{% load staticfiles %}
 <html lang = "en">
-<!-- stylesheet to change basic styles of the webpage -->
 <link rel="stylesheet" type="text/css" href="../../static/website.css">
-<!--Special styles for photos so they will be checked and their sizes will change once clicked -->
 <style>
 ul {
   list-style-type: none;
@@ -67,7 +65,6 @@ label img {
   z-index: -1;
 }
 </style>
-<!-- The head of the webpage-->
 <head>
 	<title>Earthquake Photos</title>
 </head>
@@ -78,26 +75,25 @@ label img {
 <hr/>
 <div>
 
-<!-- Start of a table-->
+<script>
+
+</script>
 <table>
-<!--First row for descriptions of each column-->
     <tr>
-        <form method = "post">
-        {% csrf_token %}
         <th>Thumbnail</th>
-        <th><input type = "submit" name = "sort1" value = "Filename"><input type = "submit" name = "sort" value = "sort"></th> <!--Buttons for sorting-->
+        <th>Filename</th>
         <th>Location</th>
         <th>Date</th>
 
     </tr>
 
     
-    {% for filename in filenames %} <!--For loop to go through all files under the folder-->
+    {% for filename in filenames %}
     <tr> 
         <form method = "post">
         {% csrf_token %}
         <ul>
-    	<td><li> <!--Using photos as checkboxes so they are easier to see and click on-->
+    	<td><li>
             <input type="checkbox" name="{{filename}}" id="{{filename}}" value="{{filename}}"/>
             <label for="{{filename}}">
             <img src='/static/images/{{filename}}' width = "300" height = "300" onclick=/>
@@ -106,25 +102,16 @@ label img {
         </td>
         </ul>
         <td>{{ filename }}</td>
-        <td> None </td> <!--The location is hard coded, it is not working yet-->
-        <td> 2016/10/14</td> <!--The date is hard coded, it is not working yet-->
+        <td> None </td>
+        <td> 2016/10/14</td>
     </tr>
-    {% endfor %} <!--End of the for loop-->
-  {% for name in names %}
-        <td>{{ name }}</td> <!--Display the filenames-->
-   {% endfor %}
+    {% endfor %}
+
 </table>
-<!--End of the table section-->
 <hr>
 <p>
-<input type="text" name = "textinput" value = "Desired input Metadata" size = "40"/><!--Text input for the two functions below-->
-<input type="submit" name="change" value="Change Metadata"><!--Function to change the metadata-->
-<input type="submit" name="append" value="Append Metadata"><!--Function to add metadata to existing metadata-->
-</p>
-<p>
-<input type="text" name = "filename" value = "Desired append filename" size = "40"/><!--Text input for the two functions below-->
-<input type="submit" name="chan" value="Change original filename"><!--Function to change the original filename-->
-<input type="submit" name="copy" value="Copy files with new filename"><!--Function to download file with new filenames without changing the original file-->
+<input type="text" name = "textinput" value = "Desired input Metadata" size = "40"/>
+<input type="submit" name="submit" value="Change Metadata">
 </div>
 
 
