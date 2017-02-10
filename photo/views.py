@@ -6,8 +6,8 @@ from django.template import Context,loader,RequestContext
 from django.shortcuts import render, get_object_or_404
 from django.forms import ModelForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseNotFound
-from PIL import Image
-from PIL.ExifTags import TAGS
+#from PIL import Image
+#from PIL.ExifTags import TAGS
 #import pyexiv2
 
 def photo(request):
