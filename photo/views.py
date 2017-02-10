@@ -6,10 +6,9 @@ from django.template import Context,loader,RequestContext
 from django.shortcuts import render, get_object_or_404
 from django.forms import ModelForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseNotFound
-import ctypes
 from PIL import Image
 from PIL.ExifTags import TAGS
-import pyexiv2
+#import pyexiv2
 
 def photo(request):
 	post = posts.objects.all()
@@ -21,11 +20,11 @@ def photo(request):
 
 		img = Image.open('C:/Users/Hao Zou/Metaimage/static/images/%s' %values)
 		img.save('C:/Users/Hao Zou/Downloads/%s' %values)
-		metadata = pyexiv2.ImageMetadata('C:/Users/Hao Zou/Downloads/%s' %values)
-		metadata.read()
-		key = 'Exif.Image.ImageDescription'
-		metadata[key] = pyexiv2.ExifTag(key, text)
-		metadata.write()
+#		metadata = pyexiv2.ImageMetadata('C:/Users/Hao Zou/Downloads/%s' %values)
+#		metadata.read()
+#		key = 'Exif.Image.ImageDescription'
+#		metadata[key] = pyexiv2.ExifTag(key, text)
+#		metadata.write()
 #		img = pexif.JpegFile.fromFile('d:/DSC_0059.JPG')
 
 
