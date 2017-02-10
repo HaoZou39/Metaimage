@@ -88,24 +88,24 @@ label img {
     </tr>
 
     
-    {% for filename in filenames %}
+
     <tr> 
         <form method = "post">
         {% csrf_token %}
         <ul>
     	<td><li>
-            <input type="checkbox" name="{{filename}}" id="{{filename}}" value="{{filename}}"/>
-            <label for="{{filename}}">
-            <img src='/static/images/{{filename}}' width = "300" height = "300" onclick=/>
+            <input type="checkbox" name="{{filenames}}" id="{{filenames}}" value="{{filenames}}"/>
+            <label for="{{filenames}}">
+            <img src='/static/images/{{filenames}}' width = "300" height = "300" onclick=/>
             </label>
             </li>
         </td>
         </ul>
-        <td>{{ filename }}</td>
+        <td>{{ filenames }}</td>
         <td> None </td>
         <td> 2016/10/14</td>
     </tr>
-    {% endfor %}
+
 
 </table>
 <hr>
