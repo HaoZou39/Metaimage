@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load staticfiles %}<!-- Loading Static files, for example: photos-->
+<html lang = "en">
+<!-- stylesheet to change basic styles of the webpage -->
+<link rel="stylesheet" type="text/css" href="../../static/website.css">
+<!--Special styles for photos so they will be checked and their sizes will change once clicked -->
+<style>
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+}
+
+input[type="checkbox"]{
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 300px;
+  width: 300px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
+</style>
+<!-- The head of the webpage-->
+<head>
+	<title>Earthquake Photos</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1> Earthquake photos </h1>
+<hr/>
+<div>
+
+<!-- Start of a table-->
+<table>
+<!--First row for descriptions of each column-->
+    <tr>
+        <form method = "post">
+        {% csrf_token %}
+        <th>Thumbnail</th>
+        <th><input type = "submit" name = "sort1" value = "Filename"><input type = "submit" name = "sort" value = "sort"></th> <!--Buttons for sorting-->
+        <th>Location</th>
+        <th>Date</th>
+
+    </tr>
+
+    
+    {% for filename in filenames %} <!--For loop to go through all files under the folder-->
+    <tr> 
+        <form method = "post">
+        {% csrf_token %}
+        <ul>
+    	<td><li> <!--Using photos as checkboxes so they are easier to see and click on-->
+            <input type="checkbox" name="{{filename}}" id="{{filename}}" value="{{filename}}"/>
+            <label for="{{filename}}">
+            <img src='/static/images/{{filename}}' width = "300" height = "300" onclick=/>
+            </label>
+            </li>
+        </td>
+        </ul>
+        <td>{{ filename }}</td>
+        <td> None </td> <!--The location is hard coded, it is not working yet-->
+        <td> 2016/10/14</td> <!--The date is hard coded, it is not working yet-->
+    </tr>
+    {% endfor %} <!--End of the for loop-->
+  {% for name in names %}
+        <td>{{ name }}</td> <!--Display the filenames-->
+   {% endfor %}
+</table>
+<!--End of the table section-->
+<hr>
+<p>
+<input type="text" name = "textinput" value = "Desired input Metadata" size = "40"/><!--Text input for the two functions below-->
+<input type="submit" name="change" value="Change Metadata"><!--Function to change the metadata-->
+<input type="submit" name="append" value="Append Metadata"><!--Function to add metadata to existing metadata-->
+</p>
+<p>
+<input type="text" name = "filename" value = "Desired append filename" size = "40"/><!--Text input for the two functions below-->
+<input type="submit" name="chan" value="Change original filename"><!--Function to change the original filename-->
+<input type="submit" name="copy" value="Copy files with new filename"><!--Function to download file with new filenames without changing the original file-->
+</div>
+
+
+</div>
+
+</body>
+
+</html>
