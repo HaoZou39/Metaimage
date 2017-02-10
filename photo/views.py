@@ -12,7 +12,8 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseN
 
 def photo(request):
 	post = posts.objects.all()
-	filenames = next(os.walk('C:/Users/Hao Zou/Metaimage/static/images'))[2]
+	filenames = 'C:/Users/Hao Zou/Metaimage/static/images/DSC_0059.JPG'
+#	filenames = next(os.walk('C:/Users/Hao Zou/Metaimage/static/images'))[2]
 	if(request.POST.get('submit')):
 		text = request.POST.get('textinput');
 
