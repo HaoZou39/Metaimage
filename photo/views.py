@@ -12,7 +12,7 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseN
 
 def photo(request):
 	post = posts.objects.all()
-	filenames = next(os.walk('C:/Users/Hao Zou/Metaimage/static/images'))[2]
+	filenames = next(os.walk('../static/images'))[2]
 #	myFolder = "..\static\images"
 #	fileSet = set() 
 
