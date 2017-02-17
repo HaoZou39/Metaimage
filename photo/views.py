@@ -12,15 +12,26 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseN
 
 def photo(request):
 	post = posts.objects.all()
-	filenames = 'C:/Users/Hao Zou/Metaimage/static/images/DSC_0059.JPG'
-#	filenames = next(os.walk('C:/Users/Hao Zou/Metaimage/static/images'))[2]
+	filenames = next(os.walk('C:/Users/Hao Zou/Metaimage/static/images'))[2]
+#	myFolder = "..\static\images"
+#	fileSet = set() 
+
+#	for root, dirs, files in os.walk(myFolder):
+#		for fileName in files:
+#			fileSet.add( os.path.join( root[len(myFolder):], fileName ))
+#	filenames = fileSet
+#	dir = os.path.dirname(__file__)
+#	names = next(os.walk('../static/images'))[2]
+#	for name in names:
+#		filenames = os.path.join(dir,'../static/images/%s',name)
+
 	if(request.POST.get('submit')):
 		text = request.POST.get('textinput');
 
 	def submit(values,text):
 
-		img = Image.open('C:/Users/Hao Zou/Metaimage/static/images/%s' %values)
-		img.save('C:/Users/Hao Zou/Downloads/%s' %values)
+		img = Image.open('../static/images/%s' %values)
+		img.save('../../Downloads/%s' %values)
 #		metadata = pyexiv2.ImageMetadata('C:/Users/Hao Zou/Downloads/%s' %values)
 #		metadata.read()
 #		key = 'Exif.Image.ImageDescription'
