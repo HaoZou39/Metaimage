@@ -12,19 +12,10 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseN
 
 def photo(request):
 	post = posts.objects.all()
-	filenames = next(os.walk('../static/images'))[2]
-#	myFolder = "..\static\images"
-#	fileSet = set() 
-
-#	for root, dirs, files in os.walk(myFolder):
-#		for fileName in files:
-#			fileSet.add( os.path.join( root[len(myFolder):], fileName ))
-#	filenames = fileSet
-#	dir = os.path.dirname(__file__)
-#	names = next(os.walk('../static/images'))[2]
-#	for name in names:
-#		filenames = os.path.join(dir,'../static/images/%s',name)
-
+	dir = os.path.dirname(__file__)
+	filepath = os.path.join(dir, '..\static\images')
+#	filenames = paths[50:]
+	filenames = next(os.walk(filepath))[2]
 	if(request.POST.get('submit')):
 		text = request.POST.get('textinput');
 
