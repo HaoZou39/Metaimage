@@ -1,0 +1,3 @@
+[submodule "pyexiv2"]
+	path = pyexiv2
+	url = https://github.com/escaped/pyexiv2
