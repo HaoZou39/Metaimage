@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.forms import ModelForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect,HttpResponseNotFound
 import pyexiv2
-import ctypes
+
 
 def photo(request):
 	filenames = next(os.walk('static\images'))[2]
