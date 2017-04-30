@@ -63,7 +63,14 @@ label img {
   z-index: -1;
 }
 </style>
-
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+	#map {
+	height: 450px;
+	width: 100%;
+}
+</style>
 <head>
 	<title>Earthquake Photos</title>
 </head>
@@ -71,6 +78,14 @@ label img {
 <body>
 	<div class="container">
 		<h1> Earthquake photos </h1>
+<p>
+<form method = "get">
+<input type="text" name = "searchtext"  size = "40"/>
+<input type="submit" name="Imagedescrip" value="Search Image Description">
+<input type="submit" name="Usercomment" value="Search User Comment">
+Filter Keyword: {{keytext}}
+</p>
+
 <input id="checkAll" type="checkbox" />
 <label for="checkAll">
 <img src='/static/checkall.jpg' width = "150" height = "27"/>
@@ -78,6 +93,61 @@ label img {
 
 <hr/>
 <div>
+
+ </head>
+ 
+ <body>
+ <div id="map"></div>
+ <script>
+ function initMap() {
+	var uluru = {lat: 40.25, lng: -86.54};
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: uluru,
+    });
+	i=0
+    {% for lat in lats %}
+		{% for log in logs %}
+			var latLng = new google.maps.LatLng({{lat}},{{log}});
+			var marker = new google.maps.Marker({
+				position: latLng,
+				map: map
+			});
+
+		{% endfor %}
+	{% endfor %}
+				
+	var markerCluster = new MarkerClusterer(map, marker,
+		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+	
+	var infowindow = new google.maps.InfoWindow({
+    content: "<div>{{values}}</div><div><img width = '62' height = '85' src='/static/images/{{values}}'</div>"
+  });  
+	
+    marker.addListener('click', function() {
+		infowindow.open(map, marker);
+		map.setZoom(10);
+        map.setCenter(marker.getPosition());
+		});
+
+	}
+	
+    var locations = [
+        {lat: {{lats}}, lng: {{logs}}},
+		{lat: -39.927193, lng: 175.053218},
+        {lat: -41.330162, lng: 174.865694},
+        {lat: -42.734358, lng: 147.439506},
+        {lat: -42.734358, lng: 147.501315},
+        {lat: -42.735258, lng: 147.438000},
+        {lat: -43.999792, lng: 170.463352}
+             ]  
+    </script>
+	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp3NAi7DrKMBE2NIkvMbI-2tn5lcx6FHc&callback=initMap">
+    </script>
+
 
 <script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript"></script>    <script type="text/javascript">
         $(function() {
@@ -96,15 +166,14 @@ label img {
     <tr>
         <th>Thumbnail</th>
         <th>Filename</th>
-        <th>Location</th>
-        <th>Date</th>
+
 
     </tr>
 
 
     {% for filename in filenames %}
     <tr> 
-        <form method = "post">
+        <form method = "GET">
         {% csrf_token %}
         <ul>
     	<td><li>
@@ -123,12 +192,19 @@ label img {
 </table>
 <hr>
 <p>
+
 <input type="text" name = "textinput" value = "Desired input Metadata" size = "40"/>
-<input type="submit" name="submit" value="Change Metadata">
+<input type="submit" name="submit" value="Change Image Description">
+<input type="submit" name="CSV" value="Import User Comment from example CSV">
+</p>
+<p>
+<input type="submit" name="GPS" value="Show Location on map">
+{{latlogs}}
+</p>
 </div>
 
-
 </div>
+
 
 </body>
 

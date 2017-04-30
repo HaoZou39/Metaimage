@@ -1,0 +1,8 @@
+Id,Title,Experiment   or Case ID,Latitude,Longitude,Priority Index [%],"No. 
+Floors",Floor Area [m^2],Total Floor Area [m^2],Column Area [m^2],Concrete Wall Area (NS) [m^2],Concrete Wall Area (EW) [m^2],Masonry Wall Area (NS) [m^2],Masonry Wall Area (EW) [m^2],"Structural 
+Damage","Masonry Wall
+Damage","Captive
+Columns","Column
+Index [%]",Wall Index (NS) [%],Wall Index (EW) [%],Min WI [%],Report(s),Data,"Photos, Videos, etc.",Drawings/Diagrams
+3223,Damage caused by the 1999 Duzce Earthquake in Turkey,1/19/2003,,,0.13,5,353,1767,4.3,0.12,1.15,0,0,S,,,0.12,0.01,0.07,0.01,/reports/3223/Donmez Pujol - Spatial Distribution of Damage Caused by the 1999 Earthquakes in Turkey.pdf|#|/reports/3223/Griffiths Irfanoglu Pujol - Istanbul at the Threshold An Evaluationof the Seismic Risk in Istanbul.pdf, ,View 19 media,
+Example,,,,,,,,,,,,,,,,,,,,,,,,
